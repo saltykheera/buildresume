@@ -61,22 +61,34 @@
     </div>
 
     <!-- Button to generate PDF -->
-    <button @click="generatePDF">Resume PDF</button>
+    <button @click="generatePDF">Generate PDF</button>
   </div>
 </template>
 
 <script setup>
 import { ref } from "vue";
-
-import { useCounterStore } from "../stores/counter";
-
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
+import { useCounterStore } from "../stores/counter";
 
 const store = useCounterStore();
-const proxyobj = store.ResumeData;
-const jsonstr = JSON.stringify(proxyobj);
-const jsonData = jsonstr;
+
+// Extract resume data from the store
+const jsonData = ref({
+  userdetails:
+    store.ResumeData.find((item) => "userdetails" in item)?.userdetails || {},
+  userContact:
+    store.ResumeData.find((item) => "userContact" in item)?.userContact || {},
+  skills: store.ResumeData.find((item) => "skills" in item)?.skills || [],
+  Education:
+    store.ResumeData.find((item) => "Education" in item)?.Education || [],
+  achievements:
+    store.ResumeData.find((item) => "achievements" in item)?.achievements || [],
+  workExperiences:
+    store.ResumeData.find((item) => "workExperiences" in item)
+      ?.workExperiences || [],
+  Projects: store.ResumeData.find((item) => "Projects" in item)?.Projects || [],
+});
 
 const generatePDF = () => {
   const element = document.getElementById("app");
