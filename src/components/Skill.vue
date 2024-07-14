@@ -17,7 +17,7 @@
           <v-icon>mdi-delete</v-icon>
         </v-btn>
       </div>
-      <v-btn color="primary" @click="saveSkills">Save Skills</v-btn>
+      <v-btn color="success" @click="saveSkills">Save Skills</v-btn>
     </v-card-text>
   </v-card>
 </template>

@@ -28,6 +28,7 @@ const profile = ref("");
 const store = useCounterStore();
 
 const saveUser = () => {
+  
   store.ResumeData.push({
     userdetails: { name: name.value, jobProfile: profile.value },
   });
