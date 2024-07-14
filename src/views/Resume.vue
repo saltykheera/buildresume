@@ -40,6 +40,9 @@
 
 <script setup>
 import { ref } from "vue";
+
+import { useRouter } from "vue-router";
+
 import UserDetail from "../components/UserDetail.vue";
 import UserContact from "../components/UserContact.vue";
 import Skill from "../components/Skill.vue";
@@ -51,7 +54,7 @@ import Projects from "../components/Projects.vue";
 import { useCounterStore } from "../stores/counter";
 
 const store = useCounterStore();
-
+const router = useRouter();
 const components = [
   UserDetail,
   UserContact,
@@ -87,6 +90,7 @@ const BuildResume = () => {
   const proxyobj = store.ResumeData;
   const jsonstr = JSON.stringify(proxyobj);
   console.log("this is jsonstr");
+  router.push("/about");
   console.log(jsonstr);
   const cleanObject = JSON.parse(jsonstr);
   console.log("this is the final object");
