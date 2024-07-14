@@ -38,7 +38,7 @@
 
 <script setup>
 import { useCounterStore } from "../stores/counter";
-import { ref } from "vue";
+import { ref, inject } from "vue";
 
 const email = ref("");
 const phone = ref("");
@@ -46,7 +46,7 @@ const location = ref("");
 const twitter = ref("");
 const linkedin = ref("");
 const store = useCounterStore();
-
+const nextComponent = inject("nextComponent"); // Inject the method
 const saveContact = () => {
   store.ResumeData.push({
     userContact: {
@@ -64,7 +64,8 @@ const saveContact = () => {
   location.value = "";
   twitter.value = "";
   linkedin.value = "";
-  console.log(store.ResumeData)
+  console.log(store.ResumeData);
+  nextComponent();
 };
 </script>
 

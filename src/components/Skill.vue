@@ -23,11 +23,11 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, inject } from "vue";
 import { useCounterStore } from "../stores/counter";
 
 const store = useCounterStore();
-
+const nextComponent = inject("nextComponent"); // Inject the method
 const skills = ref([]);
 const newSkill = ref("");
 
@@ -44,6 +44,7 @@ const removeSkill = (index) => {
 
 const saveSkills = () => {
   store.ResumeData.push({ skills: skills.value });
+  nextComponent();
   console.log(store.ResumeData);
 };
 </script>

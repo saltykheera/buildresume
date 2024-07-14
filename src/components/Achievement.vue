@@ -33,7 +33,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, inject } from "vue";
 import { useCounterStore } from "../stores/counter";
 
 const store = useCounterStore();
@@ -44,7 +44,7 @@ const newAchievement = ref({
 });
 
 const achievements = ref([]);
-
+const nextComponent = inject("nextComponent"); // Inject the method
 const addAchievement = () => {
   if (newAchievement.value.title && newAchievement.value.description) {
     achievements.value.push({ ...newAchievement.value });
@@ -61,5 +61,6 @@ const saveAchievements = () => {
   // Save achievements to a database or file
   store.ResumeData.push({ achievements: achievements.value });
   console.log(store.ResumeData);
+  nextComponent();
 };
 </script>

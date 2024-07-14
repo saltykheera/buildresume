@@ -40,7 +40,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref,inject } from "vue";
 import { useCounterStore } from "../stores/counter";
 
 const store = useCounterStore();
@@ -49,7 +49,7 @@ const projects = ref([]);
 const title = ref("");
 const link = ref("");
 const description = ref("");
-
+const nextComponent = inject("nextComponent"); // Inject the method
 const addProject = () => {
   projects.value.push({
     title: title.value,
@@ -68,6 +68,7 @@ const removeProject = (index) => {
 };
 const saveProjects = () => {
   store.ResumeData.push({ Projects: projects.value });
+  nextComponent();
 };
 </script>
 

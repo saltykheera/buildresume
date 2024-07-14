@@ -3,7 +3,7 @@
     <div class="build-section" v-if="!endPage" style="width: 100%">
       <component :is="components[currentComponent]" />
       <div class="navigation-buttons">
-        <v-btn
+        <!-- <v-btn
           variant="elevated"
           class="font-weight-bold"
           color="grey"
@@ -11,15 +11,15 @@
           :disabled="currentComponent === 0"
         >
           Back
-        </v-btn>
-        <v-btn
+        </v-btn> -->
+        <!-- <v-btn
           variant="elevated"
           class="font-weight-bold"
           color="primary"
           @click="nextComponent"
         >
           Next
-        </v-btn>
+        </v-btn> -->
       </div>
     </div>
 
@@ -46,7 +46,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, provide } from "vue";
 import { useRouter } from "vue-router";
 import UserDetail from "../components/UserDetail.vue";
 import UserContact from "../components/UserContact.vue";
@@ -100,6 +100,8 @@ const buildResume = () => {
   console.log("this is the final object");
   console.log(cleanObject);
 };
+
+provide("nextComponent", nextComponent); // Provide the method
 </script>
 
 <style scoped>

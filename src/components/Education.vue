@@ -52,7 +52,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, inject } from "vue";
 import { useCounterStore } from "../stores/counter";
 
 const store = useCounterStore();
@@ -63,7 +63,7 @@ const institution = ref("");
 const startDate = ref("");
 const endDate = ref("");
 const description = ref("");
-
+const nextComponent = inject("nextComponent"); // Inject the method
 const addEducation = () => {
   educations.value.push({
     degree: degree.value,
@@ -94,6 +94,7 @@ const saveEducation = () => {
   endDate.value = "";
   description.value = "";
   console.log(store.ResumeData);
+  nextComponent();
 };
 </script>
 

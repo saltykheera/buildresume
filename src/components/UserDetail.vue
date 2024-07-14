@@ -21,14 +21,14 @@
 
 <script setup>
 import { useCounterStore } from "../stores/counter";
-import { ref } from "vue";
+import { ref, inject } from "vue";
 
 const name = ref("");
 const profile = ref("");
 const store = useCounterStore();
+const nextComponent = inject("nextComponent"); // Inject the method
 
 const saveUser = () => {
-  
   store.ResumeData.push({
     userdetails: { name: name.value, jobProfile: profile.value },
   });
@@ -36,6 +36,7 @@ const saveUser = () => {
   // Clear input fields after saving
   name.value = "";
   profile.value = "";
+  nextComponent(); // Move to the next component
 };
 </script>
 

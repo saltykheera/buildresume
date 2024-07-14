@@ -56,7 +56,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, inject } from "vue";
 
 import { useCounterStore } from "../stores/counter";
 const store = useCounterStore();
@@ -67,7 +67,7 @@ const position = ref("");
 const startDate = ref("");
 const endDate = ref("");
 const description = ref("");
-
+const nextComponent = inject("nextComponent"); // Inject the method
 const addWorkExperience = () => {
   workExperiences.value.push({
     company: company.value,
@@ -90,10 +90,9 @@ const removeWorkExperience = (index) => {
 };
 
 const saveExp = () => {
-  // Save work experiences to the database
-  // Example: store.commit("SET_WORK_EXPERIENCES", workExperiences.value);
   store.ResumeData.push({ workExperiences: workExperiences.value });
   console.log(store.ResumeData);
+  nextComponent();
 };
 </script>
 
