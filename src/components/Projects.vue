@@ -31,11 +31,19 @@
         <v-btn color="error" @click="removeProject(index)">Delete</v-btn>
       </v-card-actions>
     </v-card>
+    <v-card-actions>
+      <v-btn color="success" variant="elevated" @click="saveProjects"
+        >save</v-btn
+      >
+    </v-card-actions>
   </v-card>
 </template>
 
 <script setup>
 import { ref } from "vue";
+import { useCounterStore } from "../stores/counter";
+
+const store = useCounterStore();
 
 const projects = ref([]);
 const title = ref("");
@@ -57,6 +65,9 @@ const addProject = () => {
 
 const removeProject = (index) => {
   projects.value.splice(index, 1);
+};
+const saveProjects = () => {
+  store.ResumeData.push({ Projects: projects.value });
 };
 </script>
 

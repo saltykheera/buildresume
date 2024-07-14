@@ -48,6 +48,10 @@ import Achievement from "../components/Achievement.vue";
 import WorkExperience from "../components/WorkExperience.vue";
 import Projects from "../components/Projects.vue";
 
+import { useCounterStore } from "../stores/counter";
+
+const store = useCounterStore();
+
 const components = [
   UserDetail,
   UserContact,
@@ -80,7 +84,9 @@ const previousComponent = () => {
 
 const BuildResume = () => {
   alert("Resume Created!");
-  // You can add your resume creation logic here
+  const proxyobj=store.ResumeData
+  
+  console.log(store.ResumeData);
 };
 </script>
 
