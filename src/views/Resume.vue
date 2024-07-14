@@ -84,9 +84,13 @@ const previousComponent = () => {
 
 const BuildResume = () => {
   alert("Resume Created!");
-  const proxyobj=store.ResumeData
-  
-  console.log(store.ResumeData);
+  const proxyobj = store.ResumeData;
+  const jsonstr = JSON.stringify(proxyobj);
+  console.log("this is jsonstr");
+  console.log(jsonstr);
+  const cleanObject = JSON.parse(jsonstr);
+  console.log("this is the final object");
+  console.log(cleanObject);
 };
 </script>
 
