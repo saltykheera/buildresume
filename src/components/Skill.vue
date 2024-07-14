@@ -3,9 +3,7 @@
     <v-card-title>Skills</v-card-title>
     <v-card-text>
       <v-text-field
-        v-for="(skill, index) in skills"
-        :key="index"
-        v-model="skills[index]"
+        v-model="newSkill"
         placeholder="Enter skill"
         variant="outlined"
         label="Skill"
@@ -19,26 +17,37 @@
           <v-icon>mdi-delete</v-icon>
         </v-btn>
       </div>
+      <v-btn color="primary" @click="saveSkills">Save Skills</v-btn>
     </v-card-text>
   </v-card>
 </template>
-<script>
-export default {
-  data() {
-    return {
-      skills: [],
-    };
-  },
-  methods: {
-    addSkill() {
-      this.skills.push("");
-    },
-    removeSkill(index) {
-      this.skills.splice(index, 1);
-    },
-  },
+
+<script setup>
+import { ref } from "vue";
+import { useCounterStore } from "../stores/counter";
+
+const store = useCounterStore();
+
+const skills = ref([]);
+const newSkill = ref("");
+
+const addSkill = () => {
+  if (newSkill.value.trim() !== "") {
+    skills.value.push(newSkill.value.trim());
+    newSkill.value = "";
+  }
+};
+
+const removeSkill = (index) => {
+  skills.value.splice(index, 1);
+};
+
+const saveSkills = () => {
+  store.ResumeData.push({ skills: skills.value });
+  console.log(store.ResumeData);
 };
 </script>
+
 <style scoped>
 .skill-item {
   display: flex;

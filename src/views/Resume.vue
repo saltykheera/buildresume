@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="build-section" v-if="!endPage">
+    <div class="build-section" v-if="!endPage" style="min-width: 600px">
       <component :is="components[currentComponent]" />
       <div class="navigation-buttons">
         <v-btn
