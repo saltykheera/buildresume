@@ -13,7 +13,7 @@
         rows="4"
         variant="outlined"
       ></v-textarea>
-      <v-btn color="success" @click="addAchievement">SAVE</v-btn>
+      <v-btn color="primary" @click="addAchievement">Add Achievement</v-btn>
       <v-divider class="my-4"></v-divider>
       <div v-for="(achievement, index) in achievements" :key="index">
         <v-card class="mb-2">
@@ -23,30 +23,43 @@
         </v-card>
       </div>
     </v-card-text>
+    <v-card-actions>
+      <v-spacer></v-spacer>
+      <v-btn color="success" variant="elevated" @click="saveAchievements"
+        >SAVE</v-btn
+      >
+    </v-card-actions>
   </v-card>
 </template>
-<script>
-export default {
-  data() {
-    return {
-      newAchievement: {
-        title: "",
-        description: "",
-      },
-      achievements: [],
-    };
-  },
-  methods: {
-    addAchievement() {
-      if (this.newAchievement.title && this.newAchievement.description) {
-        this.achievements.push({ ...this.newAchievement });
-        this.newAchievement.title = "";
-        this.newAchievement.description = "";
-      }
-    },
-    removeAchievement(index) {
-      this.achievements.splice(index, 1);
-    },
-  },
+
+<script setup>
+import { ref } from "vue";
+import { useCounterStore } from "../stores/counter";
+
+const store = useCounterStore();
+
+const newAchievement = ref({
+  title: "",
+  description: "",
+});
+
+const achievements = ref([]);
+
+const addAchievement = () => {
+  if (newAchievement.value.title && newAchievement.value.description) {
+    achievements.value.push({ ...newAchievement.value });
+    newAchievement.value.title = "";
+    newAchievement.value.description = "";
+  }
+};
+
+const removeAchievement = (index) => {
+  achievements.value.splice(index, 1);
+};
+
+const saveAchievements = () => {
+  // Save achievements to a database or file
+  store.ResumeData.push({ achievements: achievements.value });
+  console.log(store.ResumeData);
 };
 </script>

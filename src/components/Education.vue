@@ -45,7 +45,6 @@
       <v-divider></v-divider>
       <v-card-actions>
         <v-btn color="error" @click="removeEducation(index)">Delete</v-btn>
-        <v-btn>save</v-btn>
         <v-btn color="success" @click="saveEducation">Save</v-btn>
       </v-card-actions>
     </v-card>
@@ -89,6 +88,12 @@ const removeEducation = (index) => {
 const saveEducation = () => {
   // Implement saving education data to a database or API
   store.ResumeData.push({ Education: educations.value });
+  degree.value = "";
+  institution.value = "";
+  startDate.value = "";
+  endDate.value = "";
+  description.value = "";
+  console.log(store.ResumeData);
 };
 </script>
 

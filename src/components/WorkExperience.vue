@@ -48,11 +48,18 @@
         <v-btn color="error" @click="removeWorkExperience(index)">Delete</v-btn>
       </v-card-actions>
     </v-card>
+    <v-spacer></v-spacer>
+    <v-card-actions>
+      <v-btn color="success" variant="elevated" @click="saveExp">save</v-btn>
+    </v-card-actions>
   </v-card>
 </template>
 
 <script setup>
 import { ref } from "vue";
+
+import { useCounterStore } from "../stores/counter";
+const store = useCounterStore();
 
 const workExperiences = ref([]);
 const company = ref("");
@@ -80,6 +87,13 @@ const addWorkExperience = () => {
 
 const removeWorkExperience = (index) => {
   workExperiences.value.splice(index, 1);
+};
+
+const saveExp = () => {
+  // Save work experiences to the database
+  // Example: store.commit("SET_WORK_EXPERIENCES", workExperiences.value);
+  store.ResumeData.push({ workExperiences: workExperiences.value });
+  console.log(store.ResumeData);
 };
 </script>
 
