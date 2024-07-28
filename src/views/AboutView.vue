@@ -67,9 +67,11 @@
 
 <script setup>
 import { ref } from "vue";
-import jsPDF from "jspdf";
-import html2canvas from "html2canvas";
+import pdfMake from "pdfmake/build/pdfmake";
+import pdfFonts from "pdfmake/build/vfs_fonts";
 import { useCounterStore } from "../stores/counter";
+
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 const store = useCounterStore();
 
@@ -91,24 +93,97 @@ const jsonData = ref({
 });
 
 const generatePDF = () => {
-  const element = document.getElementById("app");
+  const docDefinition = {
+    content: [
+      { text: jsonData.value.userdetails.name, style: "header" },
+      {
+        text: "Job Profile: " + jsonData.value.userdetails.jobProfile,
+        style: "subheader",
+      },
 
-  const options = {
-    scale: 4,
-    windowWidth: element.scrollWidth,
-    windowHeight: element.scrollHeight,
-    logging: true,
+      { text: "Contact Information", style: "subheader" },
+      { text: "Email: " + jsonData.value.userContact.email },
+      { text: "Phone: " + jsonData.value.userContact.phone },
+      { text: "Location: " + jsonData.value.userContact.location },
+      { text: "Twitter: " + jsonData.value.userContact.twitter },
+      { text: "LinkedIn: " + jsonData.value.userContact.linkedin },
+
+      { text: "Skills", style: "subheader" },
+      { ul: jsonData.value.skills },
+
+      { text: "Education", style: "subheader" },
+      ...jsonData.value.Education.map((edu) => ({
+        stack: [
+          { text: edu.degree, style: "eduHeader" },
+          { text: edu.institution },
+          { text: `${edu.startDate} - ${edu.endDate}` },
+          { text: edu.description },
+        ],
+      })),
+
+      { text: "Achievements", style: "subheader" },
+      ...jsonData.value.achievements.map((achievement) => ({
+        stack: [
+          { text: achievement.title, style: "achHeader" },
+          { text: achievement.description },
+        ],
+      })),
+
+      { text: "Work Experiences", style: "subheader" },
+      ...jsonData.value.workExperiences.map((exp) => ({
+        stack: [
+          { text: exp.position, style: "expHeader" },
+          { text: exp.company },
+          { text: `${exp.startDate} - ${exp.endDate}` },
+          { text: exp.description },
+        ],
+      })),
+
+      { text: "Projects", style: "subheader" },
+      ...jsonData.value.Projects.map((project) => ({
+        stack: [
+          { text: project.title, style: "projHeader" },
+          { text: project.description },
+          { text: `Link: ${project.link}`, link: project.link },
+        ],
+      })),
+    ],
+    styles: {
+      header: {
+        fontSize: 24,
+        bold: true,
+        marginBottom: 10,
+      },
+      subheader: {
+        fontSize: 18,
+        bold: true,
+        marginTop: 10,
+        marginBottom: 5,
+      },
+      eduHeader: {
+        fontSize: 16,
+        bold: true,
+        marginTop: 5,
+      },
+      achHeader: {
+        fontSize: 16,
+        bold: true,
+        marginTop: 5,
+      },
+      expHeader: {
+        fontSize: 16,
+        bold: true,
+        marginTop: 5,
+      },
+      projHeader: {
+        fontSize: 16,
+        bold: true,
+        marginTop: 5,
+      },
+    },
   };
 
-  html2canvas(element, options).then((canvas) => {
-    const imgData = canvas.toDataURL("image/jpeg", 1.0);
-    const pdf = new jsPDF("p", "mm", "a4");
-    const width = pdf.internal.pageSize.getWidth();
-    const height = pdf.internal.pageSize.getHeight();
-
-    pdf.addImage(imgData, "JPEG", 0, 0, width, height, "", "FAST");
-    pdf.save("document.pdf");
-  });
+  pdfMake.createPdf(docDefinition).download("resume.pdf");
 };
 </script>
 
