@@ -1,48 +1,74 @@
 <template>
-  <div class="resume-builder">
-    <div class="build-section" v-if="!endPage" style="width: 100%">
-      <component :is="components[currentComponent]" />
-      <div class="navigation-buttons">
-        <!-- <v-btn
-          variant="elevated"
-          class="font-weight-bold"
-          color="grey"
-          @click="previousComponent"
-          :disabled="currentComponent === 0"
-        >
-          Back
-        </v-btn> -->
-        <!-- <v-btn
-          variant="elevated"
-          class="font-weight-bold"
-          color="primary"
-          @click="nextComponent"
-        >
-          Next
-        </v-btn> -->
-      </div>
-    </div>
+  <v-main
+    class="resume-builder"
+    style="background-color: #d8e9f7; min-height: 100vh"
+  >
+    <v-container class="build-section" v-if="!endPage">
+      <v-row justify="center">
+        <v-col cols="12" md="8">
+          <component :is="components[currentComponent]" />
+        </v-col>
+      </v-row>
+      <!-- <v-row justify="space-between" class="navigation-buttons">
+        <v-col cols="12" sm="6">
+          <v-btn
+            variant="elevated"
+            class="font-weight-bold"
+            color="grey"
+            @click="previousComponent"
+            :disabled="currentComponent === 0"
+            style="width: 100%; font-size: 1.1rem"
+          >
+            Back
+          </v-btn>
+        </v-col>
+        <v-col cols="12" sm="6">
+          <v-btn
+            variant="elevated"
+            class="font-weight-bold"
+            color="primary"
+            @click="nextComponent"
+            style="width: 100%; font-size: 1.1rem"
+          >
+            Next
+          </v-btn>
+        </v-col>
+      </v-row> -->
+    </v-container>
 
-    <div class="end" v-if="endPage">
-      <h2>You've reached the end!</h2>
-      <v-btn
-        @click="buildResume"
-        class="mx-2 my-2"
-        variant="elevated"
-        color="success"
-      >
-        Build Resume
-      </v-btn>
-      <v-btn
-        variant="elevated"
-        class="font-weight-bold"
-        color="primary"
-        @click="previousComponent"
-      >
-        Back
-      </v-btn>
-    </div>
-  </div>
+    <v-container class="end" v-if="endPage">
+      <v-row justify="center">
+        <v-col cols="12" class="text-center">
+          <h2>You've reached the end!</h2>
+        </v-col>
+      </v-row>
+      <v-row justify="center">
+        <v-col cols="12" sm="6">
+          <v-btn
+            @click="buildResume"
+            variant="elevated"
+            color="success"
+            style="width: 100%; font-size: 1.1rem"
+          >
+            <v-icon class="mr-2">mdi-wrench</v-icon>
+            Build Resume
+          </v-btn>
+        </v-col>
+        <v-col cols="12" sm="6">
+          <v-btn
+            variant="elevated"
+            class="font-weight-bold"
+            color="primary"
+            @click="previousComponent"
+            style="width: 100%; font-size: 1.1rem"
+          >
+            <v-icon class="mr-2">mdi-arrow-left</v-icon>
+            Back
+          </v-btn>
+        </v-col>
+      </v-row>
+    </v-container>
+  </v-main>
 </template>
 
 <script setup>

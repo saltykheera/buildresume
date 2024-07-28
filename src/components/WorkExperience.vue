@@ -14,12 +14,12 @@
       ></v-text-field>
       <v-text-field
         v-model="startDate"
-        label="Start Date"
+        label="Start Year"
         variant="outlined"
       ></v-text-field>
       <v-text-field
         v-model="endDate"
-        label="End Date"
+        label="End Year"
         variant="outlined"
       ></v-text-field>
       <v-textarea
@@ -50,7 +50,13 @@
     </v-card>
     <v-spacer></v-spacer>
     <v-card-actions>
-      <v-btn color="success" variant="elevated" @click="saveExp">save</v-btn>
+      <v-btn
+        color="success"
+        variant="elevated"
+        style="width: 100%"
+        @click="saveExp"
+        >save</v-btn
+      >
     </v-card-actions>
   </v-card>
 </template>

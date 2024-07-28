@@ -9,15 +9,17 @@
         label="Skill"
         @keyup.enter="addSkill"
       />
-      <v-btn color="primary" @click="addSkill">Add Skill</v-btn>
+      <v-btn color="primary" @click="addSkill"  >
+        <v-icon>mdi-plus</v-icon>
+        Add Skill</v-btn>
       <v-divider class="my-4"></v-divider>
       <div v-for="(skill, index) in skills" :key="index" class="skill-item">
         <v-chip>{{ skill }}</v-chip>
-        <v-btn icon color="error" @click="removeSkill(index)">
+        <v-btn icon color="error" size="small" style="margin-left: 10px" @click="removeSkill(index)">
           <v-icon>mdi-delete</v-icon>
         </v-btn>
       </div>
-      <v-btn color="success" @click="saveSkills">Save Skills</v-btn>
+      <v-btn color="success" style="width: 100%;" @click="saveSkills">Save Skills</v-btn>
     </v-card-text>
   </v-card>
 </template>

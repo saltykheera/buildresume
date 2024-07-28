@@ -16,7 +16,7 @@
       <v-btn color="primary" @click="addAchievement">Add Achievement</v-btn>
       <v-divider class="my-4"></v-divider>
       <div v-for="(achievement, index) in achievements" :key="index">
-        <v-card class="mb-2">
+        <v-card class="mb-2 py-4">
           <v-card-title>{{ achievement.title }}</v-card-title>
           <v-card-text>{{ achievement.description }}</v-card-text>
           <v-btn color="error" @click="removeAchievement(index)">DELETE</v-btn>
@@ -25,7 +25,7 @@
     </v-card-text>
     <v-card-actions>
       <v-spacer></v-spacer>
-      <v-btn color="success" variant="elevated" @click="saveAchievements"
+      <v-btn color="success" variant="elevated" style="width: 100%;" @click="saveAchievements"
         >SAVE</v-btn
       >
     </v-card-actions>

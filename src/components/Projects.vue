@@ -32,7 +32,7 @@
       </v-card-actions>
     </v-card>
     <v-card-actions>
-      <v-btn color="success" variant="elevated" @click="saveProjects"
+      <v-btn color="success" variant="elevated" style="width: 100%;" @click="saveProjects"
         >save</v-btn
       >
     </v-card-actions>

@@ -70,7 +70,8 @@ import { ref } from "vue";
 import pdfMake from "pdfmake/build/pdfmake";
 import * as pdfFonts from "pdfmake/build/vfs_fonts";
 import { useCounterStore } from "../stores/counter";
-
+import { useRouter } from "vue-router";
+const router = useRouter();
 // Set vfs to pdfMake
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
@@ -185,6 +186,7 @@ const generatePDF = () => {
   };
 
   pdfMake.createPdf(docDefinition).download("resume.pdf");
+  router.push("/");
 };
 </script>
 

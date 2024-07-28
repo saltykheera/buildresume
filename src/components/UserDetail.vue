@@ -14,7 +14,7 @@
       ></v-text-field>
     </v-card-text>
     <v-card-actions>
-      <v-btn color="success" variant="elevated" @click="saveUser">Save</v-btn>
+      <v-btn color="success" style="width: 100%;" variant="elevated" @click="saveUser">Save</v-btn>
     </v-card-actions>
   </v-card>
 </template>

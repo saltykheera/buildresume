@@ -45,7 +45,7 @@
       <v-divider></v-divider>
       <v-card-actions>
         <v-btn color="error" @click="removeEducation(index)">Delete</v-btn>
-        <v-btn color="success" @click="saveEducation">Save</v-btn>
+        <v-btn color="success" variant="elevated" @click="saveEducation">Save</v-btn>
       </v-card-actions>
     </v-card>
   </v-card>

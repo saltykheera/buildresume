@@ -29,7 +29,11 @@
       ></v-text-field>
     </v-card-text>
     <v-card-actions>
-      <v-btn color="success" variant="elevated" @click="saveContact"
+      <v-btn
+        color="success"
+        style="width: 100%"
+        variant="elevated"
+        @click="saveContact"
         >Save</v-btn
       >
     </v-card-actions>
