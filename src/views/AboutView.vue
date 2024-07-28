@@ -68,7 +68,7 @@
 <script setup>
 import { ref } from "vue";
 import pdfMake from "pdfmake/build/pdfmake";
-import pdfFonts from "pdfmake/build/vfs_fonts";
+import * as pdfFonts from "pdfmake/build/vfs_fonts";
 import { useCounterStore } from "../stores/counter";
 
 // Set vfs to pdfMake
@@ -187,6 +187,47 @@ const generatePDF = () => {
   pdfMake.createPdf(docDefinition).download("resume.pdf");
 };
 </script>
+
+<style scoped>
+#app {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  width: 100%;
+}
+
+.section {
+  margin-bottom: 20px;
+}
+
+h1,
+h2,
+h3 {
+  color: #333;
+}
+
+p {
+  color: #555;
+  margin: 5px 0;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+</style>
 
 <style scoped>
 #app {
