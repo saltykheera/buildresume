@@ -19,6 +19,8 @@
             style="font-size: 12px; font-weight: bold"
             color="primary"
             class="mt-4"
+            variant="outlined"
+            rounded
           >
             Build Resume
           </v-btn>
@@ -32,21 +34,12 @@
       <v-row justify="center">
         <v-col cols="12" md="8" class="text-center">
           <div
-            class="guideHome d-flex align-center justify-center"
+            class="guideHome d-flex align-center justify-center flex-column flex-md-row"
             style="gap: 2rem"
           >
-            <img
-              style="width: 500px; height: 500px"
-              src="/docDraw.svg"
-              alt="Illustration"
-            />
-            <div class="guideList">
-              <v-row
-                justify="center"
-                align="center"
-                class="guideList"
-                align-items="stretch"
-              >
+            <v-img width="500px" src="/docDraw.svg"></v-img>
+            <div class="guideList mx-2">
+              <v-row justify="center" align="center" class="guideList">
                 <v-col cols="12" class="text-center guideitems">
                   <v-icon large class="white--text">mdi-eye</v-icon>
                   <h3 class="white--text">Visualize your Resume</h3>
@@ -105,10 +98,24 @@ const navigateToBuildResume = () => {
   font-weight: bold;
   color: #333; /* Dark grey text color */
 }
+
 .white--text {
   color: #333; /* White text color */
 }
+
 .guideitems {
   margin-bottom: 1rem;
+}
+
+/* Additional styling for responsive design */
+.guideHome {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 600px) {
+  .guideHome {
+    flex-direction: row;
+  }
 }
 </style>
