@@ -68,10 +68,11 @@
 <script setup>
 import { ref } from "vue";
 import pdfMake from "pdfmake/build/pdfmake";
-import { vfs as pdfFonts } from "pdfmake/build/vfs_fonts";
+import pdfFonts from "pdfmake/build/vfs_fonts";
 import { useCounterStore } from "../stores/counter";
 
-pdfMake.vfs = pdfFonts;
+// Set vfs to pdfMake
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 const store = useCounterStore();
 
