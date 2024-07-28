@@ -71,7 +71,7 @@ import pdfMake from "pdfmake/build/pdfmake";
 import { vfs as pdfFonts } from "pdfmake/build/vfs_fonts";
 import { useCounterStore } from "../stores/counter";
 
-pdfMake.vfs = pdfFonts.pdfMake.vfs;
+pdfMake.vfs = pdfFonts;
 
 const store = useCounterStore();
 
